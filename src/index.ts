@@ -29,7 +29,7 @@ export = async (app: Probot) => {
       const header = {
         template: t(`color.${context.payload.action}`),
         title: {
-          content: `**[${t(`tag.${context.payload.action}`)}]** #${
+          content: `[${t(`tag.${context.payload.action}`)}] #${
             context.payload.issue.number
           } ${context.payload.issue.title}`,
           tag: "plain_text",

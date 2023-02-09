@@ -109,12 +109,12 @@ export class FeishuHandler {
           await dataSource.manager.save(hook)
         }
         if (hook.chats.find((v) => v.chatId === message.chat_id))
-          return "Already subscribed!";
+          return `Already subscribed ${repo}!!`;
         const chat = new ChatModel(message.chat_id);
         await dataSource.manager.save(chat);
         hook.chats.push(chat);
         await dataSource.manager.save(hook);
-        return "Successfully subscribed!";
+        return `Successfully subscribed ${repo}!}`;
       };
       const testUnsubscribe = async (text: string) => {
         const regexResult = /^\s*@_user_1\s+unsubscribe\s+(\S+)\s*$/.exec(text);
@@ -137,7 +137,7 @@ export class FeishuHandler {
           return "This repository has not been subscribed in this chat!";
         hook.chats = hook.chats.filter((v) => v.chatId !== message.chat_id);
         await dataSource.manager.save(hook);
-        return "Successfully unsubscribed!";
+        return `Successfully unsubscribed ${repo}!`;
       };
       const tests = [testSubscribe, testUnsubscribe];
       for (const test of tests) {
