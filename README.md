@@ -1,15 +1,20 @@
 # feishu-github-probot
 
-> A GitHub App built with [Probot](https://github.com/probot/probot) that A Bot based on Probot to send GitHub notifications to Feishu
+> A Bot based on [Probot](https://github.com/probot/probot) to send GitHub notifications to Feishu
 
 ## Setup
+
+Copy the `.env.example` file to `.env` and fill in the values.
+
+Before start, you should make sure a mysql database is running. You can launch it using the `docker-compose.yml` file in the root directory.
 
 ```sh
 # Install dependencies
 npm install
 
 # Run the bot
-npm start
+npm build # First compile the TypeScript code
+npm start   
 ```
 
 ## Docker
@@ -19,7 +24,7 @@ npm start
 docker build -t feishu-github-probot .
 
 # 2. Start container
-docker run -e APP_ID=<app-id> -e PRIVATE_KEY=<pem-value> feishu-github-probot
+docker run --env-file .env feishu-github-probot
 ```
 
 ## Contributing
