@@ -109,10 +109,10 @@ export = async (app: Probot) => {
         });
         app.log.debug(res.data);
       }
-      const issueComment = context.issue({
-        body: "Thanks for opening this issue!",
-      });
-      await context.octokit.issues.createComment(issueComment);
+      // const issueComment = context.issue({
+      //   body: "Thanks for opening this issue!",
+      // });
+      // await context.octokit.issues.createComment(issueComment);
     }
   );
 };
