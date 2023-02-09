@@ -57,7 +57,6 @@ export class FeishuHandler {
   }
   handle() {
     express.post('/lark', async (req, res) => {
-      console.log(req.body)
       const encodedBody = req.body
       const body = decrypt(encodedBody.encrypt)
       console.log(body)
@@ -67,17 +66,19 @@ export class FeishuHandler {
           challenge: body.challenge,
         };
       }
+      const result = res.send(response)
       if (
         body.schema === "2.0" &&
-        body.header.eventType === "im.message.receive_v1"
+        body.header.event_type === "im.message.receive_v1"
       )
-        response = await this.handleMessageEvent(body.event);
+        this.handleMessageEvent(body.event);
       console.log("Response to send: ", response)
-      return res.send(response)
+      return result 
     })
   }
   async handleMessageEvent(event: FeishuMessageEvent) {
     const message = event.message;
+    console.log(message)
     if (
       message.chat_type === "group" &&
       message.mentions &&
@@ -95,7 +96,7 @@ export class FeishuHandler {
         );
         if (!repoRegexResult) return "Invalid repository value!";
         const repo = repoRegexResult[1];
-        const hook = await dataSource.getRepository(HookModel).findOne({
+        let hook = await dataSource.getRepository(HookModel).findOne({
           where: {
             repo,
           },
@@ -103,6 +104,10 @@ export class FeishuHandler {
             chats: true,
           },
         });
+        if (!hook) {
+          hook = new HookModel(repo, [])
+          await dataSource.manager.save(hook)
+        }
         if (hook.chats.find((v) => v.chatId === message.chat_id))
           return "Already subscribed!";
         const chat = new ChatModel(message.chat_id);
