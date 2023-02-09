@@ -27,6 +27,12 @@ docker build -t feishu-github-probot .
 docker run --env-file .env feishu-github-probot
 ```
 
+Or you can use the `docker-compose.yml` directly:
+
+```sh
+docker-compose up -d
+```
+
 ## Contributing
 
 If you have suggestions for how feishu-github-probot could be improved, or want to report a bug, open an issue! We'd love all and any contributions.
