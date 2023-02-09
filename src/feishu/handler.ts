@@ -109,12 +109,12 @@ export class FeishuHandler {
           await dataSource.manager.save(hook)
         }
         if (hook.chats.find((v) => v.chatId === message.chat_id))
-          return `Already subscribed ${repo}!!`;
+          return `Already subscribed ${repo}!`;
         const chat = new ChatModel(message.chat_id);
         await dataSource.manager.save(chat);
         hook.chats.push(chat);
         await dataSource.manager.save(hook);
-        return `Successfully subscribed ${repo}!}`;
+        return `Successfully subscribed ${repo}! You should also make sure this bot is installed in the repository. Check it in https://github.com/apps/feishu-github-probot .`;
       };
       const testUnsubscribe = async (text: string) => {
         const regexResult = /^\s*@_user_1\s+unsubscribe\s+(\S+)\s*$/.exec(text);
