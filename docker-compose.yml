@@ -4,13 +4,28 @@ services:
     container_name: feishu-github-probot-database
     command: mysqld --default-authentication-plugin=mysql_native_password
     restart: always
+    networks:
+      - backend_lan
     volumes:
       - glb-data:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=${GLB_DB_PASSWORD}
       - MYSQL_DATABASE=${GLB_DB}
+  feishu-github-probot:
+    image: dest1n1/feishu-github-probot
+    container_name: feishu-github-probot
+    depends_on:
+      - database
+    networks:
+      - backend_lan
+    env_file:
+      - .env
     ports:
-      - 3306:3306
+      - 3000:3000
+      - ${GLB_FEISHU_PORT}:${GLB_FEISHU_PORT}
 
 volumes:
   glb-data:
+
+networks:
+  backend_lan:
