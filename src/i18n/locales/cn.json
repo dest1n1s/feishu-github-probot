@@ -1,0 +1,29 @@
+{
+  "translation": {
+    "tag.opened": "Opened",
+    "tag.reopened": "Reopened",
+    "tag.closed": "Closed",
+    "tag.assigned": "Assigned",
+    "tag.unassigned": "Unassigned",
+    "tag.merged": "Merged",
+    "content.opened_issue": "Issue opened by {{user}}.",
+    "content.closed_issue": "Issue closed by {{user}}.",
+    "content.reopened_issue": "Issue reopened by {{user}}.",
+    "content.assigned_issue": "Issue assigned to {{assignee}}",
+    "content.unassigned_issue": "Issue unassigned to {{assignee}}",
+    "content.opened_pull_request": "Pull Request opened by {{user}}.",
+    "content.reopened_pull_request": "Pull Request reopened by {{user}}.",
+    "content.closed_pull_request": "Pull Request closed by {{user}}.",
+    "content.merged_pull_request": "Pull Request merged by {{user}}.",
+    "content.assigned_pull_request": "Pull Request assigned to {{assignee}}",
+    "content.unassigned_pull_request": "Pull Request unassigned to {{assignee}}",
+    "color.opened": "blue",
+    "color.reopened": "blue",
+    "color.closed": "red",
+    "color.assigned": "green",
+    "color.unassigned": "red",
+    "color.merged": "purple",
+    "change_description_pull_request": "{{commits}} commits with {{changedFiles}} changed file(s), {{additions}} addition(s) and {{deletions}} deletion(s).",
+    "assignees": "**Assignee(s):** {{assignees,list}}"
+  }
+}

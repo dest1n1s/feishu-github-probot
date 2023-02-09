@@ -1,0 +1,4 @@
+{
+    "Codegeex.EnableExtension": false,
+    "typescript.enablePromptUseWorkspaceTsdk": true
+}
