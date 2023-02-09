@@ -1,7 +1,7 @@
-import express from "express";
+import express, { Express } from "express";
 import bodyParser from 'body-parser';
 
-const app = express()
+const app: Express = express()
 
 app.use(bodyParser.json())
 

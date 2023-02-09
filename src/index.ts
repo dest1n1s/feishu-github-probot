@@ -4,11 +4,13 @@ import t, { i18nInit } from "./i18n/i18n.config";
 import feishuApi from "./feishu/api";
 import feishuHandler from "./feishu/handler";
 import dataSource from "./database/data-source";
+import express from "./express";
 
 export = async (app: Probot) => {
   await i18nInit();
   await dataSource.initialize();
   feishuHandler.handle();
+  express.listen(process.env.GLB_FEISHU_PORT)
 
   app.on(
     [
