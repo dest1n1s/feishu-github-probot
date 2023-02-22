@@ -12,6 +12,10 @@ export = async (app: Probot) => {
   feishuHandler.handle();
   express.listen(process.env.GLB_FEISHU_PORT)
 
+  const filterUnsupportedMarkdown = (markdown: string) => {
+    // Replace code block with placeholder
+    return markdown.replace(/`[\s\S]*?`/g, "[代码]");
+  };
   app.on(
     [
       "issues.opened",
@@ -45,7 +49,7 @@ export = async (app: Probot) => {
           })}\n**[#${context.payload.issue.number} ${
             context.payload.issue.title
           }](${context.payload.issue.html_url})**\n${
-            context.payload.issue.body || ""
+            filterUnsupportedMarkdown(context.payload.issue.body || "")
           }`,
           tag: "lark_md",
         },
